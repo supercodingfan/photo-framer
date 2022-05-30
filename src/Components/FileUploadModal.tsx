@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import UploadedImageItem from './UploadedImageItem';
-import { UploadedFile } from '../type';
+import { UploadedFile } from '../types';
 
 interface Props {
   modalName: string;
@@ -131,7 +131,7 @@ const FileUploadModal = ({
               </div>
             </div>
             <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-              <footer className="flex justify-end px-8 pb-8 pt-4">
+              <footer className="flex justify-end px-8">
                 <button
                   className="rounded-full px-4 py-1 bg-blue-700 hover:bg-blue-500 text-white focus:shadow-outline focus:outline-none"
                   onClick={uploadImages}

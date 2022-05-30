@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Accordion from '../components/Accordion';
 import ImageItem from '../components/ImageItem';
-import { UploadedFile } from '../type';
+import { UploadedFile } from '../types';
 
 interface Props {
   photos: UploadedFile[];
