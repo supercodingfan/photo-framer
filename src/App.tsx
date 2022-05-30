@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import mergeImages from 'merge-images-v2';
+import download from 'downloadjs';
 
 import FileUploadModal from './components/FileUploadModal';
 import { UploadedFile, Dimension } from './types';
@@ -12,7 +13,7 @@ function App() {
   const [photos, setPhotos] = useState<UploadedFile[]>([]);
   const [frames, setFrames] = useState<UploadedFile[]>([]);
   const [backgrounds, setBackgrounds] = useState<UploadedFile[]>([]);
-  const [showResult, setShowResult] = useState<boolean>(false);
+  const [resultImage, setResultImage] = useState('');
   const [selectedPhoto, setSelectedPhoto] = useState<UploadedFile | null>(null);
   const [selectedFrame, setSelectedFrame] = useState<UploadedFile | null>(null);
   const [selectedBackground, setSelectedBackground] =
@@ -175,9 +176,13 @@ function App() {
         },
       ).then((data: any) => {
         resultImageRef.current?.setAttribute('src', data);
-        setShowResult(true);
+        setResultImage(data);
       });
     }
+  };
+
+  const downloadImage = () => {
+    download(resultImage, 'result.jpg');
   };
 
   return (
@@ -253,7 +258,11 @@ function App() {
             >
               Preview
             </button>
-            <button className="text-white bg-blue-700 px-4 mx-2 py-2 rounded-md hover:bg-blue-600">
+            <button
+              className="text-white bg-blue-700 px-4 mx-2 py-2 rounded-md hover:bg-blue-600"
+              disabled={!resultImage}
+              onClick={downloadImage}
+            >
               Download
             </button>
           </div>
@@ -266,7 +275,7 @@ function App() {
             src="/"
             alt="Result"
             ref={resultImageRef}
-            className={showResult ? '' : 'hidden'}
+            className={resultImage ? '' : 'hidden'}
           />
         </div>
       </div>
