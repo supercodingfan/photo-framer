@@ -198,8 +198,8 @@ function App() {
         selectedBackground={selectedBackground}
         onSelectImage={onSelectImage}
       />
-      <div className="grow h-full flex flex-col p-2">
-        <div className="flex items-center justify-between bg-stone-500 p-3 rounded-xl">
+      <div className="grow h-full flex flex-col p-4">
+        <div className="flex items-center justify-between bg-slate-700 p-2 mb-3 rounded-xl">
           <div>
             <div className="flex items-center text-xl text-white">
               <h2 className="mr-4">Layout Dimensions</h2>
@@ -253,17 +253,25 @@ function App() {
           </div>
           <div>
             <button
-              className="text-white bg-blue-700 px-4 mx-2 py-2 rounded-md hover:bg-blue-600"
+              className="text-white bg-stone-400 px-2 mx-2 py-2 rounded-full hover:bg-stone-600"
               onClick={generateImage}
             >
-              Preview
+              <img
+                src="/assets/preview.svg"
+                alt="Preview"
+                className="w-10 h-10"
+              />
             </button>
             <button
-              className="text-white bg-blue-700 px-4 mx-2 py-2 rounded-md hover:bg-blue-600"
+              className="text-white bg-stone-400 px-2 mx-2 py-2 rounded-full hover:bg-stone-600"
               disabled={!resultImage}
               onClick={downloadImage}
             >
-              Download
+              <img
+                src="/assets/download.svg"
+                alt="Download"
+                className="w-10 h-10"
+              />
             </button>
           </div>
         </div>
@@ -275,7 +283,7 @@ function App() {
             src="/"
             alt="Result"
             ref={resultImageRef}
-            className={resultImage ? '' : 'hidden'}
+            className={`rounded-xl ${resultImage ? '' : 'hidden'}`}
           />
         </div>
       </div>

@@ -50,6 +50,37 @@ const FileUploadModal = ({
     setShowFileUploadModal(false);
   };
 
+  const dropHandler = (e: any) => {
+    e.preventDefault();
+    const files = e.dataTransfer.files;
+
+    if (files) {
+      const newUploadedFiles = [...uploadedFiles];
+      for (let i = 0; i < files.length; i++) {
+        const isImage = files[i].type.match('image.*'),
+          url = URL.createObjectURL(files[i]);
+
+        const fileSize =
+          files[i].size > 1024
+            ? files[i].size > 1048576
+              ? Math.round(files[i].size / 1048576) + 'mb'
+              : Math.round(files[i].size / 1024) + 'kb'
+            : files[i].size + 'b';
+
+        if (isImage) newUploadedFiles.push({ file: files[i], url, fileSize });
+      }
+      setUploadedFiles(newUploadedFiles);
+    }
+  };
+
+  const dragEnterHandler = (e: any) => {
+    e.preventDefault();
+  };
+
+  const dragOverHandler = (e: any) => {
+    e.preventDefault();
+  };
+
   return (
     <>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -72,10 +103,9 @@ const FileUploadModal = ({
               <div
                 aria-label="File Upload Modal"
                 className="relative h-full flex flex-col bg-white rounded-md"
-                // onDrop="dropHandler(event);"
-                // onDragOver="dragOverHandler(event);"
-                // onDragLeave="dragLeaveHandler(event);"
-                // onDragEnter="dragEnterHandler(event);"
+                onDrop={dropHandler}
+                onDragEnter={dragEnterHandler}
+                onDragOver={dragOverHandler}
               >
                 <section className="h-full overflow-auto p-8 w-full h-full flex flex-col">
                   <header className="border-dashed border-2 border-gray-400 py-12 flex flex-col justify-center items-center">
