@@ -3,26 +3,14 @@ interface Props {
   fileSize: string;
   url: string;
   onRemove: any;
-  selected: boolean;
-  onSelect: any;
 }
 
-const ImageItem = ({
-  file,
-  fileSize,
-  url,
-  onRemove,
-  selected,
-  onSelect,
-}: Props) => {
+const UploadedImageItem = ({ file, fileSize, url, onRemove }: Props) => {
   return (
-    <li className="block p-1 w-9/10 mx-auto h-auto">
+    <li className="block p-1 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-1/8 h-24">
       <article
         tabIndex={0}
-        className={`group hasImage w-full h-full rounded-md focus:outline-none focus:shadow-outline bg-gray-100 cursor-pointer relative text-transparent hover:text-white shadow-sm ${
-          selected ? 'border-2 border-blue-700' : ''
-        }`}
-        onClick={onSelect}
+        className="group hasImage w-full h-full rounded-md focus:outline-none focus:shadow-outline bg-gray-100 cursor-pointer relative text-transparent hover:text-white shadow-sm"
       >
         <img
           alt={file.name}
@@ -49,7 +37,7 @@ const ImageItem = ({
             <p className="p-1 size text-xs">{fileSize}</p>
             <button
               className="delete ml-auto focus:outline-none hover:bg-gray-300 p-1 rounded-md"
-              onClick={onRemove}
+              onClick={() => onRemove(url)}
             >
               <svg
                 className="pointer-events-none fill-current w-4 h-4 ml-auto"
@@ -71,4 +59,4 @@ const ImageItem = ({
   );
 };
 
-export default ImageItem;
+export default UploadedImageItem;

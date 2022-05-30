@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import ImageItem from './ImageItem';
+import UploadedImageItem from './UploadedImageItem';
 import { UploadedFile } from '../type';
 
 interface Props {
@@ -117,7 +117,7 @@ const FileUploadModal = ({
                     )}
                     {uploadedFiles.map((item) => {
                       return (
-                        <ImageItem
+                        <UploadedImageItem
                           key={item.url}
                           file={item.file}
                           fileSize={item.fileSize}
