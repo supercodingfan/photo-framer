@@ -35,7 +35,7 @@ const Sidebar = ({
 
   return (
     <aside
-      className="w-72 h-full bg-gray-50 overflow-hidden"
+      className="w-72 h-full bg-gray-50 overflow-y-auto"
       aria-label="Sidebar"
     >
       <Accordion

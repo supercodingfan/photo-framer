@@ -219,9 +219,6 @@ function App() {
                 value={layoutDimension.height}
               />
               <span className="ml-1">px</span>
-              <button className="bg-blue px-3 py-2" onClick={generateImage}>
-                Generate Image
-              </button>
             </div>
             <div className="flex items-center text-xl text-white py-2">
               <h2 className="mr-4">Frame Dimensions</h2>
